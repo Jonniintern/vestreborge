@@ -1,0 +1,43 @@
+<svg width="898" height="1205" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C0C0C0"/>
+      <stop offset="50%" style="stop-color:#808080"/>
+      <stop offset="100%" style="stop-color:#A9A9A9"/>
+    </linearGradient>
+    <filter id="metalTexture">
+      <feTurbulence baseFrequency="0.9" numOctaves="1" result="noise"/>
+      <feColorMatrix in="noise" values="0 0 0 0 0.7 0 0 0 0 0.7 0 0 0 0 0.7 0 0 0 0.3 0"/>
+    </filter>
+  </defs>
+  
+  <!-- Outer metal frame -->
+  <rect x="0" y="0" width="898" height="1205" fill="url(#metalGrad)" rx="5"/>
+  <rect x="8" y="8" width="882" height="1189" fill="#696969" rx="3"/>
+  <rect x="16" y="16" width="866" height="1173" fill="url(#metalGrad)" rx="2"/>
+  
+  <!-- Inner content area (transparent) -->
+  <rect x="40" y="40" width="818" height="1125" fill="transparent"/>
+  
+  <!-- Metal texture overlay -->
+  <rect x="0" y="0" width="898" height="40" fill="url(#metalGrad)" filter="url(#metalTexture)" opacity="0.4"/>
+  <rect x="0" y="1165" width="898" height="40" fill="url(#metalGrad)" filter="url(#metalTexture)" opacity="0.4"/>
+  <rect x="0" y="40" width="40" height="1125" fill="url(#metalGrad)" filter="url(#metalTexture)" opacity="0.4"/>
+  <rect x="858" y="40" width="40" height="1125" fill="url(#metalGrad)" filter="url(#metalTexture)" opacity="0.4"/>
+  
+  <!-- Corner bolts -->
+  <circle cx="20" cy="20" r="8" fill="#2F4F4F"/>
+  <circle cx="878" cy="20" r="8" fill="#2F4F4F"/>
+  <circle cx="20" cy="1185" r="8" fill="#2F4F4F"/>
+  <circle cx="878" cy="1185" r="8" fill="#2F4F4F"/>
+  
+  <!-- Bolt details -->
+  <circle cx="20" cy="20" r="4" fill="#C0C0C0"/>
+  <circle cx="878" cy="20" r="4" fill="#C0C0C0"/>
+  <circle cx="20" cy="1185" r="4" fill="#C0C0C0"/>
+  <circle cx="878" cy="1185" r="4" fill="#C0C0C0"/>
+  
+  <!-- Industrial text -->
+  <text x="449" y="25" text-anchor="middle" font-family="Arial" font-size="12" fill="#2F4F4F" font-weight="bold">◆ INDUSTRIELL ◆</text>
+  <text x="449" y="1190" text-anchor="middle" font-family="Arial" font-size="12" fill="#2F4F4F" font-weight="bold">◆ MODERNE ◆</text>
+</svg>

@@ -1,0 +1,50 @@
+<svg width="898" height="1205" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="vintageGrad" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:#F5F5DC"/>
+      <stop offset="70%" style="stop-color:#DEB887"/>
+      <stop offset="100%" style="stop-color:#D2B48C"/>
+    </radialGradient>
+    <pattern id="ornatePattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#DEB887"/>
+      <circle cx="10" cy="10" r="3" fill="#CD853F" opacity="0.6"/>
+      <path d="M5,5 Q10,2 15,5 Q12,10 15,15 Q10,18 5,15 Q8,10 5,5" fill="#B8860B" opacity="0.4"/>
+    </pattern>
+  </defs>
+  
+  <!-- Outer ornate frame -->
+  <rect x="0" y="0" width="898" height="1205" fill="url(#vintageGrad)" rx="25"/>
+  <rect x="12" y="12" width="874" height="1181" fill="url(#ornatePattern)" rx="20"/>
+  <rect x="24" y="24" width="850" height="1157" fill="url(#vintageGrad)" rx="15"/>
+  
+  <!-- Inner content area (transparent) -->
+  <rect x="50" y="50" width="798" height="1105" fill="transparent"/>
+  
+  <!-- Ornate border decorations -->
+  <rect x="0" y="0" width="898" height="50" fill="url(#ornatePattern)" opacity="0.8"/>
+  <rect x="0" y="1155" width="898" height="50" fill="url(#ornatePattern)" opacity="0.8"/>
+  <rect x="0" y="50" width="50" height="1105" fill="url(#ornatePattern)" opacity="0.8"/>
+  <rect x="848" y="50" width="50" height="1105" fill="url(#ornatePattern)" opacity="0.8"/>
+  
+  <!-- Corner flourishes -->
+  <path d="M25,25 Q40,10 55,25 Q40,40 25,25" fill="#B8860B"/>
+  <path d="M843,25 Q858,10 873,25 Q858,40 843,25" fill="#B8860B"/>
+  <path d="M25,1180 Q40,1165 55,1180 Q40,1195 25,1180" fill="#B8860B"/>
+  <path d="M843,1180 Q858,1165 873,1180 Q858,1195 843,1180" fill="#B8860B"/>
+  
+  <!-- Vintage roses -->
+  <circle cx="100" cy="100" r="12" fill="#DC143C" opacity="0.7"/>
+  <circle cx="798" cy="100" r="12" fill="#DC143C" opacity="0.7"/>
+  <circle cx="100" cy="1105" r="12" fill="#DC143C" opacity="0.7"/>
+  <circle cx="798" cy="1105" r="12" fill="#DC143C" opacity="0.7"/>
+  
+  <!-- Rose details -->
+  <circle cx="100" cy="100" r="6" fill="#B22222" opacity="0.8"/>
+  <circle cx="798" cy="100" r="6" fill="#B22222" opacity="0.8"/>
+  <circle cx="100" cy="1105" r="6" fill="#B22222" opacity="0.8"/>
+  <circle cx="798" cy="1105" r="6" fill="#B22222" opacity="0.8"/>
+  
+  <!-- Vintage text -->
+  <text x="449" y="30" text-anchor="middle" font-family="Georgia" font-size="14" fill="#8B4513" font-weight="bold" font-style="italic">❦ Vintage Eleganse ❦</text>
+  <text x="449" y="1185" text-anchor="middle" font-family="Georgia" font-size="14" fill="#8B4513" font-weight="bold" font-style="italic">❦ Tidløs Skjønnhet ❦</text>
+</svg>

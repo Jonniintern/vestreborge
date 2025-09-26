@@ -1,0 +1,28 @@
+{
+  "name": "vestre-borge-etikett-generator",
+  "version": "1.0.0",
+  "description": "Profesjonell etikett-generator for Vestre Borge Gård",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "install-deps": "npm install"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "cors": "^2.8.5",
+    "nodemailer": "^6.9.7",
+    "better-sqlite3": "^9.2.2",
+    "helmet": "^7.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "keywords": ["etiketter", "gård", "produksjon", "etikett-generator"],
+  "author": "Vestre Borge Gård",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

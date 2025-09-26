@@ -1,0 +1,1846 @@
+﻿<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Vestre Borge Gård - Etikett Generator</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+<link rel="shortcut icon" href="/images/favicon.png">
+<style>
+:root {
+    --primary-green: #2E7D32;
+    --light-red: #FF5252;
+    --pure-white: #FFFFFF;
+    --ochre: #D4A574;
+    --text-dark: #1B5E20;
+    --light-green: #4CAF50;
+    --soft-ochre: #E8CCA4;
+    --shadow: rgba(46, 125, 50, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--primary-green);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 25px;
+    }
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: var(--pure-white);
+    color: var(--text-dark);
+    border: 3px solid var(--primary-green);
+    border-radius: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    header {
+        margin-bottom: 40px;
+        padding: 30px;
+        border-radius: 16px;
+    }
+}
+
+.header-logo {
+    width: 60px;
+    height: auto;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .header-logo {
+        width: 80px;
+        margin-bottom: 15px;
+    }
+}
+
+.header-logo:hover {
+    transform: scale(1.05);
+}
+
+h1 {
+    color: var(--primary-green);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+}
+
+.subtitle {
+    color: var(--ochre);
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-top: 5px;
+    line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+    .subtitle {
+        font-size: 1.1rem;
+        margin-top: 8px;
+    }
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .main-content {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 35px;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 967px) {
+    .main-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+.editor-section {
+    background: var(--pure-white);
+    padding: 20px;
+    border: 3px solid var(--primary-green);
+    border-radius: 12px;
+    min-height: 350px;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .editor-section {
+        padding: 30px;
+        border-radius: 16px;
+        min-height: 700px;
+    }
+}
+
+.controls-section {
+    background: var(--pure-white);
+    padding: 20px;
+    border: 3px solid var(--primary-green);
+    border-radius: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .controls-section {
+        padding: 30px;
+        border-radius: 16px;
+    }
+}
+
+.section-title {
+    font-size: 1.2rem;
+    color: var(--primary-green);
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-bottom: 2px solid var(--ochre);
+    padding-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 1.4rem;
+        margin-bottom: 25px;
+    }
+}
+
+.template-selector {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+@media (min-width: 768px) {
+    .template-selector {
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+}
+
+.template-btn {
+    background: var(--pure-white);
+    border: 2px solid var(--ochre);
+    padding: 15px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--text-dark);
+    min-height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .template-btn {
+        padding: 14px 10px;
+        font-size: 0.8rem;
+        min-height: 70px;
+    }
+}
+
+@media (min-width: 768px) {
+    .template-btn {
+        border: 3px solid var(--hay-gold);
+        padding: 25px 20px;
+        border-radius: 15px;
+        font-size: 1rem;
+        min-height: auto;
+    }
+}
+
+.template-btn:hover {
+    background: var(--soft-ochre);
+    border-color: var(--primary-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.template-btn.active {
+    background: var(--primary-green);
+    color: var(--pure-white);
+    border-color: var(--primary-green);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.template-btn .icon {
+    font-size: 1.3rem;
+    margin-bottom: 6px;
+    display: block;
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
+}
+
+@media (min-width: 768px) {
+    .template-btn .icon {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+}
+
+.canvas-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    min-height: 350px;
+    border: 2px solid var(--primary-green);
+    border-radius: 12px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .canvas-container {
+        height: 500px;
+        min-height: 400px;
+    }
+}
+
+@media (min-width: 768px) {
+    .canvas-container {
+        height: 450px;
+        min-height: 300px;
+        border: 4px dashed var(--hay-gold);
+        border-radius: 15px;
+        margin-bottom: 25px;
+        box-shadow: 
+            inset 0 0 20px rgba(218, 165, 32, 0.2),
+            0 4px 15px var(--earth-shadow);
+    }
+}
+
+.canvas-container.active {
+    border-color: var(--light-red);
+    border-width: 3px;
+    background: transparent;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+#labelCanvas {
+    max-width: calc(100% - 40px);
+    max-height: calc(100% - 40px);
+    width: auto;
+    height: auto;
+    cursor: crosshair;
+    background: var(--pure-white);
+    border: 4px solid var(--primary-green);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    aspect-ratio: 898/1205;
+    transition: transform 0.2s ease;
+}
+
+#labelCanvas:hover {
+    transform: scale(1.01);
+}
+
+.canvas-placeholder {
+    text-align: center;
+    color: var(--forest-green);
+    font-size: 1.1rem;
+    font-family: 'Georgia', serif;
+    font-weight: 500;
+    padding: 30px 20px;
+}
+
+.canvas-placeholder .icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: var(--forest-green);
+    opacity: 0.8;
+    filter: drop-shadow(2px 2px 6px rgba(53, 94, 59, 0.3));
+}
+
+.canvas-placeholder p {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: var(--warm-brown);
+    opacity: 0.8;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+    .form-group {
+        margin-bottom: 16px;
+    }
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--warm-brown);
+    font-family: 'Georgia', serif;
+    font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+    .form-group label {
+        margin-bottom: 6px;
+        font-size: 0.95rem;
+    }
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #E0E0E0;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    background: var(--pure-white);
+    color: var(--text-dark);
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    min-height: 44px;
+}
+
+@media (min-width: 768px) {
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 14px 16px;
+        min-height: 46px;
+    }
+}
+
+@media (min-width: 768px) {
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 15px 18px;
+        border-radius: 12px;
+        font-size: 1rem;
+        box-shadow: inset 0 2px 4px rgba(139, 69, 19, 0.1);
+    }
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    background: var(--pure-white);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: 'Georgia', serif;
+}
+
+.file-input-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.file-input-wrapper input[type="file"] {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+}
+
+.file-input-label {
+    display: flex;
+    padding: 16px 12px;
+    background: var(--wheat);
+    border: 2px dashed var(--hay-gold);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    font-family: 'Georgia', serif;
+    color: var(--warm-brown);
+    font-size: 0.85rem;
+    box-shadow: 0 2px 6px var(--earth-shadow);
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+@media (min-width: 768px) {
+    .file-input-label {
+        padding: 18px 14px;
+        font-size: 0.9rem;
+        min-height: 55px;
+    }
+}
+
+@media (min-width: 768px) {
+    .file-input-label {
+        padding: 20px 25px;
+        border: 3px dashed var(--hay-gold);
+        border-radius: 15px;
+        font-size: 1.1rem;
+        min-height: auto;
+        display: block;
+    }
+}
+
+.file-input-label:hover {
+    border-color: var(--forest-green);
+    background: var(--cream);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 20px var(--earth-shadow),
+        inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.file-input-label .icon {
+    margin-right: 12px;
+    font-size: 1.3rem;
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
+}
+
+.frame-selector {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--hay-gold);
+}
+
+.frame-selector label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: var(--warm-brown);
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+}
+
+.frame-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+@media (min-width: 768px) {
+    .frame-options {
+        gap: 12px;
+    }
+}
+
+.frame-btn {
+    background: var(--cream);
+    border: 2px solid var(--hay-gold);
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif;
+    font-size: 0.8rem;
+    color: var(--warm-brown);
+    text-align: center;
+    min-height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .frame-btn {
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        min-height: auto;
+    }
+}
+
+.frame-btn:hover {
+    background: var(--wheat);
+    border-color: var(--forest-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--earth-shadow);
+}
+
+.frame-btn.active {
+    background: var(--barn-red);
+    color: var(--rustic-white);
+    border-color: var(--warm-brown);
+    box-shadow: 0 3px 10px rgba(160, 68, 44, 0.4);
+}
+
+.frame-preview {
+    display: block;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.canvas-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #F5F5F5;
+    border-top: 3px solid var(--ochre);
+}
+
+@media (max-width: 767px) {
+    .canvas-menu {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+.menu-btn {
+    padding: 12px 20px;
+    background: var(--pure-white);
+    border: 2px solid var(--primary-green);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--primary-green);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.menu-btn:hover {
+    background: var(--primary-green);
+    color: var(--pure-white);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px var(--shadow);
+}
+
+.frame-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.frame-menu label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-right: 6px;
+}
+
+.frame-num-btn {
+    width: 35px;
+    height: 35px;
+    background: var(--pure-white);
+    border: 2px solid var(--ochre);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.frame-num-btn:hover {
+    background: var(--ochre);
+    color: var(--pure-white);
+}
+
+.frame-num-btn.active {
+    background: var(--light-red);
+    color: var(--pure-white);
+    border-color: var(--light-red);
+}
+
+.text-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background: var(--pure-white);
+    padding: 30px;
+    border: 3px solid var(--primary-green);
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    min-width: 320px;
+    max-width: 90vw;
+}
+
+.popup-content h4 {
+    margin-bottom: 15px;
+    color: var(--barn-red);
+    font-size: 1.2rem;
+    font-family: 'Georgia', serif;
+    text-align: center;
+}
+
+#popupText {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--hay-gold);
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    font-family: 'Georgia', serif;
+    color: var(--warm-brown);
+    box-sizing: border-box;
+}
+
+.size-controls {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.size-controls label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--warm-brown);
+    font-family: 'Georgia', serif;
+}
+
+.size-adjuster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.size-change-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--hay-gold);
+    border: 2px solid var(--warm-brown);
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--warm-brown);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.size-change-btn:hover {
+    background: var(--barn-red);
+    color: white;
+    transform: scale(1.1);
+}
+
+.size-display {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--barn-red);
+    font-family: 'Georgia', serif;
+    min-width: 50px;
+    text-align: center;
+    padding: 8px 12px;
+    background: var(--cream);
+    border: 2px solid var(--hay-gold);
+    border-radius: 6px;
+}
+
+.popup-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.popup-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Georgia', serif;
+}
+
+.popup-btn.save {
+    background: var(--primary-green);
+    color: var(--pure-white);
+}
+
+.popup-btn.delete {
+    background: var(--light-red);
+    color: var(--pure-white);
+}
+
+.popup-btn.cancel {
+    background: var(--ochre);
+    color: var(--pure-white);
+}
+
+.popup-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--hay-gold);
+}
+
+@media (min-width: 768px) {
+    .action-buttons {
+        flex-direction: row;
+        gap: 12px;
+        margin-top: 30px;
+    }
+}
+
+.btn {
+    padding: 14px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: 'Georgia', serif;
+    box-shadow: 0 3px 8px var(--earth-shadow);
+    border: 1px solid transparent;
+    min-height: 48px;
+    width: 100%;
+    box-sizing: border-box;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+@media (min-width: 768px) {
+    .btn {
+        padding: 16px 20px;
+        font-size: 1rem;
+        min-height: 50px;
+    }
+}
+
+@media (min-width: 768px) {
+    .btn {
+        padding: 18px 25px;
+        border-radius: 15px;
+        font-size: 1.1rem;
+        gap: 10px;
+        min-height: auto;
+    }
+}
+
+.btn-primary {
+    background: var(--primary-green);
+    color: var(--pure-white);
+    flex: 1;
+}
+
+.btn-primary:hover {
+    background: var(--light-green);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px var(--shadow);
+}
+
+.btn-secondary {
+    background: var(--ochre);
+    color: var(--pure-white);
+}
+
+.btn-secondary:hover {
+    background: var(--soft-ochre);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px var(--shadow);
+}
+
+.status-message {
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    display: none;
+    animation: slideIn 0.4s ease;
+    font-family: 'Georgia', serif;
+    font-weight: 600;
+    box-shadow: 0 4px 15px var(--earth-shadow);
+}
+
+.status-message.success {
+    background: var(--wheat);
+    border: 2px solid var(--forest-green);
+    color: var(--forest-green);
+}
+
+.status-message.error {
+    background: var(--cream);
+    border: 2px solid var(--barn-red);
+    color: var(--barn-red);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 25px 20px;
+    color: var(--pure-white);
+    font-size: 0.9rem;
+    background: var(--text-dark);
+    margin-top: 40px;
+}
+
+.size-controls {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.size-controls label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--warm-brown);
+    font-family: 'Georgia', serif;
+}
+
+.size-adjuster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.size-change-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--hay-gold);
+    border: 2px solid var(--warm-brown);
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--warm-brown);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.size-change-btn:hover {
+    background: var(--barn-red);
+    color: white;
+    transform: scale(1.1);
+}
+
+.size-display {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--barn-red);
+    font-family: 'Georgia', serif;
+    min-width: 60px;
+    text-align: center;
+    padding: 8px 12px;
+    background: var(--cream);
+    border: 2px solid var(--hay-gold);
+    border-radius: 6px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<img src="/images/LogoVBG.png" alt="Vestre Borge Gård Logo" class="header-logo">
+<h1>Vestre Borge Gård</h1>
+<p class="subtitle">Profesjonell Etikett-Generator - OPPDATERT!</p>
+</header>
+<div id="statusMessage" class="status-message"></div>
+<div class="main-content">
+<div class="editor-section">
+<h2 class="section-title">📝 Design Din Etikett</h2>
+
+<div class="canvas-container" id="canvasContainer">
+<canvas id="labelCanvas" width="898" height="1205"></canvas>
+<div class="canvas-placeholder" id="canvasPlaceholder">
+<div class="icon">📋</div>
+<div><strong>Din etikett vises her</strong></div>
+<p>Velg en mal eller last opp bilde med knappene til høyre</p>
+<p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.6;">Dobbel-klikk på tekst for å redigere</p>
+</div>
+</div>
+<div class="canvas-menu">
+<button type="button" class="menu-btn" id="uploadBtn">📁 Last opp bilde</button>
+<button type="button" class="menu-btn" id="addTextBtn">➕ Legg til tekst</button>
+<button type="button" class="menu-btn" id="undoBtn">↶ Angre</button>
+<div class="frame-menu">
+<label>Ramme:</label>
+<button type="button" class="frame-num-btn active" data-frame="none">0</button>
+<button type="button" class="frame-num-btn" data-frame="frame1">1</button>
+<button type="button" class="frame-num-btn" data-frame="frame2">2</button>
+<button type="button" class="frame-num-btn" data-frame="frame3">3</button>
+</div>
+</div>
+</div>
+<div class="controls-section">
+<h2 class="section-title">⚙️ Kontroller</h2>
+
+<!-- Hidden file input -->
+<input type="file" id="hiddenFileInput" accept="image/*" style="display: none;">
+
+<!-- Text Edit Popup -->
+<div class="text-popup" id="textPopup" style="display: none;">
+<div class="popup-content">
+<h4>✏️ Rediger tekst</h4>
+<input type="text" id="popupText" placeholder="Skriv tekst her...">
+<div class="size-controls">
+<label>Tekst-størrelse:</label>
+<div class="size-adjuster">
+<button type="button" class="size-change-btn" id="decreaseSize">−</button>
+<span class="size-display" id="sizeDisplay">36px</span>
+<button type="button" class="size-change-btn" id="increaseSize">+</button>
+</div>
+</div>
+<div class="popup-actions">
+<button type="button" class="popup-btn save" id="saveText">✓ Lagre</button>
+<button type="button" class="popup-btn delete" id="deleteText">🗑️ Fjern</button>
+<button type="button" class="popup-btn cancel" id="cancelText">× Avbryt</button>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label for="customerName">👤 Navn:</label>
+<input type="text" id="customerName" required placeholder="Ditt navn">
+</div>
+<div class="form-group">
+<label for="customerEmail">📧 E-post:</label>
+<input type="email" id="customerEmail" required placeholder="din@epost.no">
+</div>
+<div class="form-group">
+<label for="phone">📱 Telefon (valgfri):</label>
+<input type="tel" id="phone" placeholder="+47 123 45 678">
+</div>
+<div class="form-group">
+<label for="notes">�� Spesielle ønsker:</label>
+<textarea id="notes" placeholder="Beskriv eventuelle spesielle ønsker..."></textarea>
+</div>
+<div class="action-buttons">
+<button type="button" class="btn btn-primary" id="submitLabel" style="flex: 2;">
+<span>📤</span>
+Send inn etikett
+</button>
+<button type="button" class="btn btn-secondary" id="downloadLabel" style="flex: 1;">
+<span>💾</span>
+Last ned
+</button>
+</div>
+</div>
+</div>
+</div>
+<footer>
+<p>&copy; 2024 Vestre Borge Gård</p>
+</footer>
+<script>
+// Global variables
+let canvas, ctx;
+let currentTemplate = 'egen';
+let backgroundImage = null;
+let selectedFrame = 'none';
+let frameImage = null;
+
+// Simple text element system
+let textElements = [];
+let currentEditElement = null;
+let isDragging = false;
+let dragTarget = null;
+let dragStart = { x: 0, y: 0 };
+let undoStack = [];
+let nextId = 1;
+
+// Template configurations - Updated for 898x1205 canvas (76mm x 102mm at 300 DPI)
+const templates = {
+    egen: {
+        name: 'Egen',
+        background: null,
+        defaultElements: []
+    },
+    mal1: {
+        name: 'Klassisk Gård',
+        background: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`
+            <svg width="898" height="1205" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#F5F5DC"/>
+                        <stop offset="50%" style="stop-color:#F5DEB3"/>
+                        <stop offset="100%" style="stop-color:#FAF9F6"/>
+                    </linearGradient>
+                </defs>
+                <rect width="898" height="1205" fill="url(#grad1)"/>
+                <circle cx="150" cy="200" r="80" fill="#DAA520" opacity="0.4"/>
+                <circle cx="748" cy="400" r="60" fill="#A0442C" opacity="0.3"/>
+                <rect x="50" y="50" width="798" height="60" fill="#8B4513" opacity="0.1"/>
+                <rect x="50" y="1095" width="798" height="60" fill="#8B4513" opacity="0.1"/>
+                <text x="449" y="80" text-anchor="middle" font-family="Georgia" font-size="32" fill="#8B4513" font-weight="bold">VESTRE BORGE GARD</text>
+                <text x="449" y="1140" text-anchor="middle" font-family="Georgia" font-size="20" fill="#A0442C" font-style="italic">Naturens beste fra garden var</text>
+            </svg>
+        `),
+    },
+    mal2: {
+        name: 'Moderne Økologisk',
+        background: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`
+            <svg width="898" height="1205" xmlns="http://www.w3.org/2000/svg">
+                <rect width="898" height="1205" fill="#F5F5DC"/>
+                <rect x="0" y="0" width="898" height="150" fill="#355E3B"/>
+                <rect x="0" y="1055" width="898" height="150" fill="#355E3B"/>
+                <circle cx="449" cy="75" r="25" fill="#DAA520"/>
+                <text x="449" y="90" text-anchor="middle" font-family="Georgia" font-size="28" fill="white" font-weight="bold">ØKOLOGISK</text>
+                <text x="449" y="1140" text-anchor="middle" font-family="Georgia" font-size="24" fill="white" font-weight="bold">100% Naturlig</text>
+            </svg>
+        `)
+    },
+    mal3: {
+        name: 'Blomster & Natur',
+        background: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`
+            <svg width="898" height="1205" xmlns="http://www.w3.org/2000/svg">
+                <rect width="898" height="1205" fill="#fff8f0"/>
+                <circle cx="180" cy="200" r="45" fill="#ffb347" opacity="0.7"/>
+                <circle cx="718" cy="300" r="52" fill="#ff6b9d" opacity="0.6"/>
+                <circle cx="250" cy="900" r="38" fill="#c44569" opacity="0.6"/>
+                <circle cx="650" cy="1000" r="42" fill="#f8b500" opacity="0.7"/>
+                <path d="M 100 350 Q 449 250 798 350" stroke="#355E3B" stroke-width="4" fill="none" opacity="0.5"/>
+                <text x="449" y="100" text-anchor="middle" font-family="Georgia" font-size="28" fill="#8B4513" font-style="italic" font-weight="bold">Naturens Gave</text>
+                <text x="449" y="1160" text-anchor="middle" font-family="Georgia" font-size="22" fill="#A0442C" font-style="italic">Med kjaerlighet fra naturen</text>
+            </svg>
+        `)
+    }
+};
+
+// Initialize the application
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Applikasjon starter...');
+    initializeCanvas();
+    setupEventListeners();
+    
+    // Add default texts on startup
+    addDefaultTexts();
+    redrawCanvas();
+    
+    currentTemplate = 'egen';
+    console.log('✅ Applikasjon ferdig lastet');
+});
+
+function initializeCanvas() {
+    console.log('🎨 Initialiserer canvas...');
+    canvas = document.getElementById('labelCanvas');
+    if (!canvas) {
+        console.error('❌ Canvas element ikke funnet!');
+        return;
+    }
+    
+    ctx = canvas.getContext('2d');
+    
+    // Set canvas internal size (high resolution for print)
+    const canvasWidth = 898;
+    const canvasHeight = 1205;
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+    
+    // Set display size with proper aspect ratio
+    const container = document.getElementById('canvasContainer');
+    const aspectRatio = canvasWidth / canvasHeight; // 0.745
+    
+    // Make sure canvas takes up available space while maintaining aspect ratio
+    canvas.style.maxWidth = '100%';
+    canvas.style.maxHeight = '100%';
+    canvas.style.width = 'auto';
+    canvas.style.height = 'auto';
+    canvas.style.objectFit = 'contain';
+    
+    console.log('✅ Canvas initialisert:', canvasWidth, 'x', canvasHeight);
+    
+    // Always show canvas initially
+    showCanvas();
+    redrawCanvas();
+}
+
+function setupEventListeners() {
+    // No template buttons needed - always use 'egen'
+
+    // Frame buttons
+    document.querySelectorAll('.frame-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            setActiveFrame(this.dataset.frame);
+        });
+    });
+
+    // Canvas interactions
+    canvas.addEventListener('dblclick', handleCanvasDoubleClick);
+    canvas.addEventListener('mousedown', handleMouseDown);
+    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mouseup', handleMouseUp);
+
+    // Menu buttons
+    document.getElementById('uploadBtn').addEventListener('click', () => document.getElementById('hiddenFileInput').click());
+    document.getElementById('hiddenFileInput').addEventListener('change', handleImageUpload);
+    document.getElementById('addTextBtn').addEventListener('click', addNewText);
+    document.getElementById('undoBtn').addEventListener('click', undoLastAction);
+
+    // Frame buttons
+    document.querySelectorAll('.frame-num-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            setActiveFrame(this.dataset.frame);
+        });
+    });
+
+    // Popup controls
+    document.getElementById('saveText').addEventListener('click', saveTextEdit);
+    document.getElementById('deleteText').addEventListener('click', deleteText);
+    document.getElementById('cancelText').addEventListener('click', closePopup);
+    document.getElementById('increaseSize').addEventListener('click', increaseFontSize);
+    document.getElementById('decreaseSize').addEventListener('click', decreaseFontSize);
+    
+    // Text input live preview
+    document.getElementById('popupText').addEventListener('input', updateLivePreview);
+
+    // Action buttons
+    document.getElementById('submitLabel').addEventListener('click', submitLabel);
+    document.getElementById('downloadLabel').addEventListener('click', downloadLabel);
+}
+
+function setActiveTemplate(templateId) {
+    console.log('🎯 Valgt template:', templateId);
+    currentTemplate = templateId;
+    
+    document.querySelectorAll('.template-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-template="${templateId}"]`).classList.add('active');
+
+    const imageUpload = document.getElementById('ownImageUpload');
+    const frameSelector = document.getElementById('frameSelector');
+    
+    if (templateId === 'egen') {
+        console.log('📁 Viser opplastingsområde');
+        imageUpload.style.display = 'block';
+        // Always show frame selector for 'egen' template
+        frameSelector.style.display = 'block';
+        console.log('🖼️ Ramme-velger vist for egen template');
+    } else {
+        console.log('🚫 Skjuler opplastingsområde');
+        imageUpload.style.display = 'none';
+        frameSelector.style.display = 'none';
+    }
+
+    loadTemplate(templateId);
+}
+
+function setActiveFrame(frameId) {
+    selectedFrame = frameId;
+    
+    document.querySelectorAll('.frame-num-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-frame="${frameId}"]`).classList.add('active');
+
+    if (frameId !== 'none') {
+        loadFrame(frameId);
+    } else {
+        frameImage = null;
+        redrawCanvas();
+    }
+}
+
+function setActiveFrame(frameId) {
+    selectedFrame = frameId;
+    
+    document.querySelectorAll('.frame-num-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-frame="${frameId}"]`).classList.add('active');
+
+    if (frameId !== 'none') {
+        loadFrame(frameId);
+    } else {
+        frameImage = null;
+        redrawCanvas();
+    }
+}
+
+function loadTemplate(templateId) {
+    console.log('📋 Laster template:', templateId);
+    const template = templates[templateId];
+    
+    // Only add default texts if no text exists (preserve user edits)
+    if (textElements.length === 0) {
+        saveState();
+        addDefaultTexts();
+    }
+    
+    if (template.background && templateId !== 'egen') {
+        const img = new Image();
+        img.onload = function() {
+            backgroundImage = img;
+            showCanvas();
+            redrawCanvas();
+        };
+        img.src = template.background;
+    } else {
+        if (templateId === 'egen') {
+            backgroundImage = null;
+        }
+        showCanvas();
+        redrawCanvas();
+    }
+}
+
+function addDefaultTexts() {
+    // Add three default text elements with larger fonts
+    textElements = [
+        {
+            id: nextId++,
+            text: 'EPLEMOST',
+            x: 449,
+            y: 300,
+            fontSize: 104,
+            color: '#8B4513'
+        },
+        {
+            id: nextId++,
+            text: 'Nydelig',
+            x: 449,
+            y: 500,
+            fontSize: 64,
+            color: '#8B4513'
+        },
+        {
+            id: nextId++,
+            text: '100% hageepler',
+            x: 449,
+            y: 650,
+            fontSize: 48,
+            color: '#8B4513'
+        }
+    ];
+}
+
+function addNewText() {
+    saveState();
+    const newElement = {
+        id: nextId++,
+        text: 'Ny tekst',
+        x: 449,
+        y: 300 + (textElements.length * 80),
+        fontSize: 36,
+        color: '#8B4513'
+    };
+    textElements.push(newElement);
+    redrawCanvas();
+    openTextPopup(newElement);
+}
+
+// Remove single click handler - we'll use double-click instead
+
+function getClickedElement(x, y) {
+    for (let element of textElements) {
+        const textWidth = element.text.length * element.fontSize * 0.6;
+        const textHeight = element.fontSize;
+        
+        if (x >= element.x - textWidth/2 && x <= element.x + textWidth/2 &&
+            y >= element.y - textHeight/2 && y <= element.y + textHeight/2) {
+            return element;
+        }
+    }
+    return null;
+}
+
+function openTextPopup(element) {
+    currentEditElement = element;
+    document.getElementById('popupText').value = element.text;
+    updateSizeDisplay();
+    
+    document.getElementById('textPopup').style.display = 'flex';
+    document.getElementById('popupText').focus();
+}
+
+function saveTextEdit() {
+    if (currentEditElement) {
+        saveState();
+        currentEditElement.text = document.getElementById('popupText').value.trim();
+        
+        if (!currentEditElement.text) {
+            deleteText();
+            return;
+        }
+        
+        redrawCanvas();
+    }
+    closePopup();
+}
+
+function deleteText() {
+    if (currentEditElement) {
+        saveState();
+        textElements = textElements.filter(el => el.id !== currentEditElement.id);
+        redrawCanvas();
+    }
+    closePopup();
+}
+
+function closePopup() {
+    document.getElementById('textPopup').style.display = 'none';
+    currentEditElement = null;
+}
+
+function saveState() {
+    undoStack.push({
+        textElements: JSON.parse(JSON.stringify(textElements)),
+        backgroundImage: backgroundImage
+    });
+    if (undoStack.length > 10) undoStack.shift();
+}
+
+function undoLastAction() {
+    if (undoStack.length > 0) {
+        const lastState = undoStack.pop();
+        textElements = lastState.textElements;
+        backgroundImage = lastState.backgroundImage;
+        redrawCanvas();
+    }
+}
+
+function handleImageUpload(e) {
+    console.log('📤 Bilde opplasting startet...', e.target.files);
+    const file = e.target.files[0];
+    if (file) {
+        console.log('📁 Fil valgt:', file.name, file.type, file.size + ' bytes');
+        
+        if (!file.type.startsWith('image/')) {
+            showStatus('Vennligst velg en gyldig bildefil (JPG, PNG, GIF, etc.)', 'error');
+            return;
+        }
+        
+        if (file.size > 10 * 1024 * 1024) {
+            showStatus('Bildet er for stort. Maksimal størrelse er 10MB.', 'error');
+            return;
+        }
+        
+        showStatus('Laster opp bilde...', 'success');
+        
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            console.log('📖 FileReader ferdig, lager Image objekt...');
+            const img = new Image();
+            img.onload = function() {
+                console.log('🖼️ Bilde lastet!', img.width, 'x', img.height);
+                backgroundImage = img;
+                showCanvas();
+                redrawCanvas();
+                
+                showStatus('Bilde lastet opp! Bruk knappene under canvas for å legge til tekst eller velge ramme.', 'success');
+            };
+            img.onerror = function() {
+                console.error('❌ Feil ved lasting av bilde');
+                showStatus('Kunne ikke laste bildet. Prøv et annet bilde.', 'error');
+            };
+            img.src = event.target.result;
+        };
+        reader.onerror = function() {
+            console.error('❌ FileReader feil');
+            showStatus('Feil ved lesing av filen. Prøv igjen.', 'error');
+        };
+        reader.readAsDataURL(file);
+        
+        // File uploaded successfully
+    }
+}
+
+function loadFrame(frameId) {
+    console.log('🎨 Lager ramme:', frameId);
+    const frameCanvas = document.createElement('canvas');
+    frameCanvas.width = 898;
+    frameCanvas.height = 1205;
+    const frameCtx = frameCanvas.getContext('2d');
+    
+    try {
+        if (frameId === 'frame1') {
+            console.log('🪵 Tegner tre-ramme');
+            drawWoodenFrame(frameCtx, 898, 1205);
+        } else if (frameId === 'frame2') {
+            console.log('🔩 Tegner metal-ramme');
+            drawMetalFrame(frameCtx, 898, 1205);
+        } else if (frameId === 'frame3') {
+            console.log('🌹 Tegner vintage-ramme');
+            drawVintageFrame(frameCtx, 898, 1205);
+        }
+        
+        const img = new Image();
+        img.onload = function() {
+            console.log('✅ Ramme ferdig lastet');
+            frameImage = img;
+            redrawCanvas();
+        };
+        img.src = frameCanvas.toDataURL();
+        console.log('📊 Ramme konvertert til data URL');
+    } catch (error) {
+        console.error('❌ Feil ved ramme-lasting:', error);
+        showStatus('Feil ved lasting av ramme', 'error');
+    }
+}
+
+function drawWoodenFrame(ctx, width, height) {
+    ctx.fillStyle = '#8B4513';
+    ctx.fillRect(0, 0, width, height);
+    
+    ctx.fillStyle = '#A0522D';
+    ctx.fillRect(15, 15, width - 30, height - 30);
+    
+    ctx.fillStyle = '#CD853F';
+    ctx.fillRect(30, 30, width - 60, height - 60);
+    
+    ctx.clearRect(60, 60, width - 120, height - 120);
+    
+    ctx.fillStyle = '#DAA520';
+    ctx.beginPath();
+    ctx.arc(60, 60, 15, 0, Math.PI * 2);
+    ctx.arc(width - 60, 60, 15, 0, Math.PI * 2);
+    ctx.arc(60, height - 60, 15, 0, Math.PI * 2);
+    ctx.arc(width - 60, height - 60, 15, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+function drawMetalFrame(ctx, width, height) {
+    const gradient = ctx.createLinearGradient(0, 0, width, height);
+    gradient.addColorStop(0, '#C0C0C0');
+    gradient.addColorStop(0.5, '#808080');
+    gradient.addColorStop(1, '#A9A9A9');
+    
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+    
+    ctx.fillStyle = '#696969';
+    ctx.fillRect(8, 8, width - 16, height - 16);
+    
+    ctx.fillStyle = gradient;
+    ctx.fillRect(16, 16, width - 32, height - 32);
+    
+    ctx.clearRect(40, 40, width - 80, height - 80);
+    
+    ctx.fillStyle = '#2F4F4F';
+    ctx.beginPath();
+    ctx.arc(20, 20, 8, 0, Math.PI * 2);
+    ctx.arc(width - 20, 20, 8, 0, Math.PI * 2);
+    ctx.arc(20, height - 20, 8, 0, Math.PI * 2);
+    ctx.arc(width - 20, height - 20, 8, 0, Math.PI * 2);
+    ctx.fill();
+    
+    ctx.fillStyle = '#C0C0C0';
+    ctx.beginPath();
+    ctx.arc(20, 20, 4, 0, Math.PI * 2);
+    ctx.arc(width - 20, 20, 4, 0, Math.PI * 2);
+    ctx.arc(20, height - 20, 4, 0, Math.PI * 2);
+    ctx.arc(width - 20, height - 20, 4, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+function drawVintageFrame(ctx, width, height) {
+    const radialGrad = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, Math.max(width, height)/2);
+    radialGrad.addColorStop(0, '#F5F5DC');
+    radialGrad.addColorStop(0.7, '#DEB887');
+    radialGrad.addColorStop(1, '#D2B48C');
+    
+    ctx.fillStyle = radialGrad;
+    ctx.fillRect(0, 0, width, height);
+    
+    ctx.fillStyle = '#DEB887';
+    ctx.fillRect(12, 12, width - 24, height - 24);
+    
+    ctx.fillStyle = radialGrad;
+    ctx.fillRect(24, 24, width - 48, height - 48);
+    
+    ctx.clearRect(50, 50, width - 100, height - 100);
+    
+    ctx.fillStyle = '#B8860B';
+    ctx.beginPath();
+    ctx.moveTo(25, 25);
+    ctx.quadraticCurveTo(40, 10, 55, 25);
+    ctx.quadraticCurveTo(40, 40, 25, 25);
+    ctx.closePath();
+    ctx.fill();
+    
+    ctx.fillStyle = '#DC143C';
+    ctx.beginPath();
+    ctx.arc(100, 100, 12, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+function showCanvas() {
+    console.log('👁️ Viser canvas');
+    const container = document.getElementById('canvasContainer');
+    const placeholder = document.getElementById('canvasPlaceholder');
+    
+    if (container) container.classList.add('active');
+    if (placeholder) placeholder.style.display = 'none';
+    if (canvas) canvas.style.display = 'block';
+}
+
+function hideCanvas() {
+    console.log('🙈 Skjuler canvas');
+    const container = document.getElementById('canvasContainer');
+    const placeholder = document.getElementById('canvasPlaceholder');
+    
+    if (container) container.classList.remove('active');
+    if (placeholder) placeholder.style.display = 'block';
+    if (canvas) canvas.style.display = 'none';
+}
+
+function redrawCanvas() {
+    const canvasWidth = 898;
+    const canvasHeight = 1205;
+    
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    
+    // Draw background
+    if (backgroundImage) {
+        ctx.drawImage(backgroundImage, 0, 0, canvasWidth, canvasHeight);
+    } else {
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvasHeight);
+        gradient.addColorStop(0, '#F5F5DC');
+        gradient.addColorStop(0.5, '#FAF9F6');
+        gradient.addColorStop(1, '#F5DEB3');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+        
+        ctx.strokeStyle = '#DAA520';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(10, 10, canvasWidth - 20, canvasHeight - 20);
+    }
+    
+    // Draw text elements
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    
+    for (let element of textElements) {
+        if (element.text.trim()) {
+            ctx.font = `${element.fontSize}px Georgia`;
+            ctx.fillStyle = element.color;
+            ctx.fillText(element.text, element.x, element.y);
+            
+            // Draw selection outline if dragging
+            if (isDragging && dragTarget && dragTarget.id === element.id) {
+                const metrics = ctx.measureText(element.text);
+                const textWidth = metrics.width;
+                const textHeight = element.fontSize;
+                
+                ctx.strokeStyle = '#007acc';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(
+                    element.x - textWidth/2 - 5, 
+                    element.y - textHeight/2 - 5, 
+                    textWidth + 10, 
+                    textHeight + 10
+                );
+            }
+        }
+    }
+    
+    // Draw frame on top
+    if (frameImage && selectedFrame !== 'none') {
+        ctx.drawImage(frameImage, 0, 0, canvasWidth, canvasHeight);
+    }
+}
+
+// Removed old drawElement function - now using new text line system
+
+function handleCanvasDoubleClick(e) {
+    const rect = canvas.getBoundingClientRect();
+    const canvasWidth = 898;
+    const canvasHeight = 1205;
+    
+    const x = (e.clientX - rect.left) * (canvasWidth / rect.width);
+    const y = (e.clientY - rect.top) * (canvasHeight / rect.height);
+    
+    const clickedElement = getClickedElement(x, y);
+    if (clickedElement) {
+        openTextPopup(clickedElement);
+    }
+}
+
+function increaseFontSize() {
+    if (currentEditElement) {
+        currentEditElement.fontSize = Math.min(120, currentEditElement.fontSize + 4);
+        updateSizeDisplay();
+        redrawCanvas();
+    }
+}
+
+function decreaseFontSize() {
+    if (currentEditElement) {
+        currentEditElement.fontSize = Math.max(12, currentEditElement.fontSize - 4);
+        updateSizeDisplay();
+        redrawCanvas();
+    }
+}
+
+function updateSizeDisplay() {
+    if (currentEditElement) {
+        document.getElementById('sizeDisplay').textContent = currentEditElement.fontSize + 'px';
+    }
+}
+
+function updateLivePreview() {
+    if (currentEditElement) {
+        currentEditElement.text = document.getElementById('popupText').value;
+        redrawCanvas();
+    }
+}
+
+// Removed old text element functions - using new text line system
+
+function handleMouseDown(e) {
+    // Prevent popup opening when starting drag
+    e.preventDefault();
+    
+    const rect = canvas.getBoundingClientRect();
+    const canvasWidth = 898;
+    const canvasHeight = 1205;
+    
+    const x = (e.clientX - rect.left) * (canvasWidth / rect.width);
+    const y = (e.clientY - rect.top) * (canvasHeight / rect.height);
+    
+    dragTarget = getClickedElement(x, y);
+    
+    if (dragTarget) {
+        isDragging = true;
+        dragStart = { x: x - dragTarget.x, y: y - dragTarget.y };
+        canvas.style.cursor = 'grabbing';
+    }
+}
+
+function handleMouseMove(e) {
+    if (isDragging && dragTarget) {
+        const rect = canvas.getBoundingClientRect();
+        const canvasWidth = 898;
+        const canvasHeight = 1205;
+        
+        const x = (e.clientX - rect.left) * (canvasWidth / rect.width);
+        const y = (e.clientY - rect.top) * (canvasHeight / rect.height);
+        
+        // Keep text within canvas bounds
+        const minX = 100;
+        const maxX = canvasWidth - 100;
+        const minY = 50;
+        const maxY = canvasHeight - 50;
+        
+        dragTarget.x = Math.max(minX, Math.min(maxX, x - dragStart.x));
+        dragTarget.y = Math.max(minY, Math.min(maxY, y - dragStart.y));
+        
+        redrawCanvas();
+    }
+}
+
+function handleMouseUp(e) {
+    if (isDragging) {
+        isDragging = false;
+        dragTarget = null;
+        canvas.style.cursor = 'default';
+        // Prevent click event from firing after drag
+        e.preventDefault();
+        e.stopPropagation();
+    }
+}
+
+function downloadLabel() {
+    const link = document.createElement('a');
+    link.download = 'etikett-vestre-borge.png';
+    link.href = canvas.toDataURL();
+    link.click();
+}
+
+async function submitLabel() {
+    const customerName = document.getElementById('customerName').value.trim();
+    const customerEmail = document.getElementById('customerEmail').value.trim();
+    
+    if (!customerName || !customerEmail) {
+        showStatus('Vennligst fyll ut navn og e-post adresse', 'error');
+        return;
+    }
+    
+    const submitBtn = document.getElementById('submitLabel');
+    submitBtn.classList.add('loading');
+    submitBtn.textContent = 'Sender...';
+    
+    try {
+        const canvas = document.getElementById('labelCanvas');
+        canvas.toBlob(async (blob) => {
+            const formData = new FormData();
+            formData.append('labelImage', blob, 'label.png');
+            formData.append('customerName', customerName);
+            formData.append('customerEmail', customerEmail);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('notes', document.getElementById('notes').value);
+            formData.append('template', currentTemplate);
+            formData.append('frame', selectedFrame);
+            
+            const response = await fetch('/api/submit-label', {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (response.ok) {
+                showStatus('Etiketten er sendt inn! Vi kontakter deg snart.', 'success');
+                document.getElementById('customerName').value = '';
+                document.getElementById('customerEmail').value = '';
+                document.getElementById('phone').value = '';
+                document.getElementById('notes').value = '';
+            } else {
+                throw new Error('Server error');
+            }
+        }, 'image/png');
+    } catch (error) {
+        showStatus('Det oppstod en feil. Prøv igjen eller kontakt oss direkte.', 'error');
+    } finally {
+        submitBtn.classList.remove('loading');
+        submitBtn.innerHTML = '<span>📤</span> Send inn etikett';
+    }
+}
+
+function showStatus(message, type) {
+    const statusEl = document.getElementById('statusMessage');
+    statusEl.textContent = message;
+    statusEl.className = `status-message ${type}`;
+    statusEl.style.display = 'block';
+    
+    setTimeout(() => {
+        statusEl.style.display = 'none';
+    }, 5000);
+}
+</script>
+</body>
+</html>
