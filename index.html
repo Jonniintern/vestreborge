@@ -938,20 +938,23 @@
 
         <div>
           <h3 style="font-family:Georgia,serif;font-size:1.1rem;color:var(--green);padding-bottom:7px;border-bottom:2px solid var(--ochre);margin-bottom:16px;">Send en melding</h3>
-          <form class="kontakt-form" onsubmit="sendForm(event)">
+          <form class="kontakt-form" action="https://formspree.io/f/mgogpdzz" method="POST" onsubmit="sendForm(event)">
             <div>
               <label for="navn">Navn</label>
               <input type="text" id="navn" name="navn" placeholder="Ditt navn" required />
             </div>
             <div>
               <label for="epost">E-post</label>
-              <input type="email" id="epost" name="epost" placeholder="din@epost.no" required />
+              <input type="email" id="epost" name="email" placeholder="din@epost.no" required />
             </div>
             <div>
               <label for="melding">Melding</label>
               <textarea id="melding" name="melding" placeholder="Hva lurer du p&aring;?" required></textarea>
             </div>
+            <!-- Honeypot: bots fyller inn, mennesker ser ikke feltet -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" />
             <button type="submit" class="btn-send">Send melding</button>
+            <p class="form-status" role="status" aria-live="polite" style="margin-top:6px;font-size:0.9rem;"></p>
           </form>
         </div>
       </div>
@@ -1080,11 +1083,43 @@
 
     function sendForm(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('.btn-send');
-      btn.textContent = 'Melding sendt \u2713';
-      btn.style.background = '#388E3C';
+      const form = e.target;
+      const btn = form.querySelector('.btn-send');
+      const status = form.querySelector('.form-status');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sender …';
       btn.disabled = true;
-      e.target.reset();
+      status.textContent = '';
+      status.style.color = '';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          btn.textContent = 'Melding sendt ✓';
+          btn.style.background = '#388E3C';
+          status.style.color = '#2e7d32';
+          status.textContent = 'Takk! Vi tar kontakt så snart vi kan.';
+          form.reset();
+        } else {
+          response.json().then(data => {
+            const msg = (data && data.errors) ? data.errors.map(e => e.message).join(', ') : 'Noe gikk galt. Prøv igjen eller send e-post til kontakt@vestreborge.no.';
+            status.style.color = '#c62828';
+            status.textContent = msg;
+            btn.textContent = originalText;
+            btn.disabled = false;
+          });
+        }
+      })
+      .catch(() => {
+        status.style.color = '#c62828';
+        status.textContent = 'Nettverksfeil. Prøv igjen eller send e-post til kontakt@vestreborge.no.';
+        btn.textContent = originalText;
+        btn.disabled = false;
+      });
     }
   </script>
 
