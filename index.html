@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vestre Borge G&aring;rd i Grenland &ndash; &Oslash;kologisk eplemost fra eget g&aring;rdspresseri</title>
+  <meta name="description" content="Vestre Borge G&aring;rd p&aring; Borgestad i Grenland. &Oslash;kologisk eplemost, leiepresse og gårdsutsalg. Kontakt: kontakt@vestreborge.no" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+    :root {
+      --green: #3a6b25;         /* Litt varmere, mindre hard */
+      --green-dark: #1f3f10;
+      --green-mid: #5a8c40;
+      --ochre: #c8903c;
+      --ochre-light: #f0d5a0;
+      --cream: #fbf6ea;          /* Varmere kremfarge */
+      --cream-deep: #f4ecd8;     /* For kort/bokser */
+      --white: #ffffff;
+      --ink: #2a2a2a;
+      --muted: #6a6a6a;
+      --border: #e8ddc2;         /* Mykere borderfarge */
+      --radius: 6px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Lora', Georgia, serif; /* Ny, mykere font */
+      color: var(--ink); background: var(--cream); /* Bakgrunnsfarge for hele siden */
+      line-height: 1.75;
+      font-weight: 400;
+    }
+    .section, .velkommen, .hero {
+        background-color: var(--white);
+    }
+    /* Veldig subtil papir-tekstur på kremfargede seksjoner */
+    .section-alt, .gaard-brand, .insta-cta-bar {
+        background-color: var(--cream);
+        background-image:
+          radial-gradient(circle at 20% 30%, rgba(200,144,60,0.04) 0, transparent 40%),
+          radial-gradient(circle at 80% 70%, rgba(58,107,37,0.04) 0, transparent 45%);
+    }
+    /* Håndskrevet accent-tekst */
+    .handwritten {
+        font-family: 'Caveat', cursive;
+        color: var(--ochre);
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        display: inline-block;
+        margin-bottom: 4px;
+    }
+    /* Dekorativ epleblad-adskiller */
+    .leaf-divider {
+        display: flex; align-items: center; justify-content: center;
+        gap: 14px; margin: 40px auto; max-width: 260px;
+        color: var(--ochre); opacity: 0.7;
+    }
+    .leaf-divider::before, .leaf-divider::after {
+        content: ''; flex: 1; height: 1px;
+        background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+    .leaf-divider svg { flex-shrink: 0; }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .wrap-wide { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--green-dark); color: rgba(255,255,255,0.82);
+      font-size: 0.82rem; padding: 7px 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; /* Beholder sans-serif for UI-elementer */
+    }
+    .topbar-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .topbar a { color: rgba(255,255,255,0.82); }
+    .topbar a:hover { color: var(--ochre-light); }
+    .topbar-social { display: flex; gap: 14px; align-items: center; }
+    .topbar-social a {
+      display: flex; align-items: center; gap: 5px; font-size: 0.8rem;
+      color: rgba(255,255,255,0.7); transition: color 0.2s;
+    }
+    .topbar-social a:hover { color: var(--ochre-light); }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white); border-bottom: 2px solid var(--green);
+      position: sticky; top: 0; z-index: 100;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+    .nav-inner {
+      height: 68px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 11px; }
+    .nav-brand img { height: 48px; width: auto; }
+    .nav-brand-text { font-size: 1rem; font-weight: 700; color: var(--green); line-height: 1.2; }
+    .nav-brand-text small {
+      display: block; font-size: 0.68rem; font-weight: 400; color: var(--muted); letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; list-style: none; gap: 0; }
+    .nav-links a {
+      display: block; padding: 8px 14px; color: var(--ink); font-size: 0.88rem;
+      font-weight: 500; transition: color 0.2s, background 0.2s; border-radius: 4px;
+    }
+    .nav-links a:hover { color: var(--green); background: rgba(45,90,27,0.07); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 560px; display: flex;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 80px 24px 60px; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 40%; z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg,
+        rgba(15,35,8,0.70) 0%,
+        rgba(20,48,10,0.55) 50%,
+        rgba(15,35,8,0.80) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-logo {
+      width: 120px; margin: 0 auto 18px; padding: 12px;
+      background: rgba(255,255,255,0.95); border-radius: 50%;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+    }
+    .hero h1 {
+      font-family: Georgia, serif; font-size: clamp(2rem, 5vw, 3.4rem);
+      color: var(--white); line-height: 1.15; margin-bottom: 14px;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.55); font-weight: 700;
+    }
+    .hero h1 em {
+      display: block; font-family: 'Caveat', cursive; font-style: normal;
+      color: var(--ochre-light); font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+      font-weight: 600; margin-top: 4px; letter-spacing: 1px;
+    }
+    .hero-sub {
+      color: rgba(255,255,255,0.82); font-size: 1.05rem;
+      max-width: 540px; margin: 0 auto 30px; line-height: 1.65;
+    }
+    .btn {
+      display: inline-block; padding: 12px 28px; border-radius: var(--radius);
+      font-weight: 700; font-size: 0.9rem; transition: all 0.2s; cursor: pointer;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+    .btn-green { background: var(--green); color: var(--white); border: 2px solid var(--green); }
+    .btn-green:hover { background: var(--green-dark); border-color: var(--green-dark); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 2px solid rgba(255,255,255,0.65); margin-left: 10px;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: var(--white); }
+
+    /* ── VELKOMMEN ── */
+    .velkommen {
+      padding: 80px 0; text-align: center; /* Mer luft */
+      border-bottom: 1px solid var(--border);
+    }
+    .velkommen h2 {
+      font-family: Georgia, serif; font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: var(--green); margin-bottom: 18px;
+    }
+    .velkommen p { font-size: 1.05rem; color: var(--muted); max-width: 680px; margin: 0 auto 14px; }
+    .social-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; margin-top: 22px; flex-wrap: wrap;
+    }
+    .social-row a {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--green); color: var(--white); padding: 9px 20px;
+      border-radius: var(--radius); font-size: 0.88rem; font-weight: 600; transition: background 0.2s;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+    .social-row a:hover { background: var(--green-dark); }
+
+    /* ── SECTION SHARED ── */
+    .section { padding: 84px 0; }
+    .section-alt { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .section-title-wrap { text-align: center; margin-bottom: 48px; }
+    .section-heading {
+      font-family: Georgia, serif; font-size: clamp(1.6rem, 3.8vw, 2.3rem);
+      color: var(--green); margin-bottom: 6px; font-weight: 700;
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--muted); max-width: 620px;
+      margin: 8px auto 0; line-height: 1.7;
+    }
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+    /* ── GÅRDEN ── */
+    .gaarden-lead {
+      font-size: 1.05rem; color: var(--ink); font-weight: 600; margin-bottom: 16px;
+    }
+    .gaarden-text { font-size: 1rem; color: var(--muted); line-height: 1.8; }
+
+    /* ── PRODUKSJON ── */
+    .prod-intro { font-size: 1rem; color: var(--muted); margin-bottom: 36px; }
+    .prod-row {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 40px;
+      align-items: start; margin-bottom: 48px;
+    }
+    .prod-img {
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.1);
+    }
+    .prod-img img { width: 100%; height: 240px; object-fit: cover; }
+    .sorter h3 {
+      font-family: Georgia, serif; font-size: 1.15rem; color: var(--green);
+      padding-bottom: 8px; border-bottom: 2px solid var(--ochre); margin-bottom: 20px;
+    }
+    .sort-item { margin-bottom: 18px; }
+    .sort-item strong { color: var(--ink); font-size: 1rem; display: block; margin-bottom: 3px; font-weight: 600; }
+    .sort-item p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
+
+    .most-text { font-size: 1rem; color: var(--muted); line-height: 1.8; margin-bottom: 32px; }
+
+    /* Produktbilder rad */
+    .produkt-showcase {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px; margin-top: 40px;
+    }
+    .produkt-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .produkt-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.11); }
+    .produkt-card-img {
+      height: 280px; overflow: hidden;
+      background: linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .produkt-card-img img { max-height: 240px; width: auto; object-fit: contain; padding: 12px; }
+    .produkt-card-body { padding: 20px 22px 24px; }
+    .produkt-card-body .badge {
+      display: inline-block; background: var(--green); color: var(--white);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 3px; margin-bottom: 10px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+    .produkt-card-body h3 {
+      font-family: Georgia, serif; font-size: 1.2rem; color: var(--ink);
+      margin-bottom: 8px; line-height: 1.3; text-align: left; /* Endret */
+    }
+    .produkt-card-body p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
+    .produkt-card-body .pris { font-size: 0.92rem; font-weight: 700; color: var(--green); }
+
+    /* ── LEIEPRESSE ── */
+    .leiepresse-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 36px;
+    }
+    .lp-block h3 {
+      font-family: Georgia, serif; font-size: 1.1rem; color: var(--green);
+      padding-bottom: 7px; border-bottom: 2px solid var(--ochre); margin-bottom: 14px;
+    }
+    .lp-block p, .lp-block li {
+      font-size: 1rem; color: var(--muted); line-height: 1.8;
+    }
+    .lp-block ul { padding-left: 18px; margin-top: 8px; }
+    .lp-block li { margin-bottom: 5px; }
+    .lp-highlight {
+      background: var(--green); color: var(--white); border-radius: var(--radius);
+      padding: 20px 24px; margin-top: 28px;
+    }
+    .lp-highlight h4 {
+      font-family: Georgia, serif; font-size: 1rem; margin-bottom: 8px; color: var(--ochre-light);
+    }
+    .lp-highlight p, .lp-highlight li { font-size: 0.95rem; color: rgba(255,255,255,0.88); line-height: 1.75; }
+    .lp-highlight ul { padding-left: 16px; margin-top: 6px; }
+    .lp-highlight a { color: var(--ochre-light); }
+    .lp-highlight a:hover { text-decoration: underline; }
+    .lp-note {
+      background: #fffbe6; border-left: 4px solid var(--ochre); padding: 16px 20px;
+      border-radius: 0 var(--radius) var(--radius) 0; margin-top: 20px;
+    }
+    .lp-note p { font-size: 0.9rem; color: #5a4800; line-height: 1.7; }
+
+    /* ── BESØK ── */
+    .besok-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 36px;
+    }
+    .aapningstider { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; }
+    .aapningstider h3 {
+      font-family: Georgia, serif; font-size: 1.1rem; color: var(--green);
+      margin-bottom: 14px; padding-bottom: 7px; border-bottom: 2px solid var(--ochre);
+    }
+    .tid-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.95rem;
+    }
+    .tid-row:last-child { border-bottom: none; }
+    .tid-row .dag { color: var(--ink); font-weight: 600; }
+    .tid-row .kl { color: var(--muted); }
+    .adresse-box { margin-top: 20px; }
+    .adresse-box h3 {
+      font-family: Georgia, serif; font-size: 1.1rem; color: var(--green);
+      margin-bottom: 12px; padding-bottom: 7px; border-bottom: 2px solid var(--ochre);
+    }
+    .adresse-box p { font-size: 0.95rem; color: var(--muted); line-height: 1.75; margin-bottom: 10px; }
+    .adresse-box a { color: var(--green); font-weight: 600; }
+    .adresse-box a:hover { text-decoration: underline; }
+    .kart-wrap {
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1); border: 1px solid var(--border);
+    }
+    .kart-wrap iframe { display: block; width: 100%; height: 300px; border: none; } /* Redusert høyde */
+
+    /* ── KONTAKT ── */
+    .kontakt-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 36px; align-items: start;
+    }
+    .kontakt-info h3 {
+      font-family: Georgia, serif; font-size: 1.1rem; color: var(--green);
+      margin-bottom: 14px; padding-bottom: 7px; border-bottom: 2px solid var(--ochre);
+    }
+    .kontakt-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
+    .k-icon {
+      width: 34px; height: 34px; background: var(--green); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; color: white;
+    }
+    .k-text strong {
+      display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--muted); margin-bottom: 2px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+    .k-text span { font-size: 1rem; color: var(--ink); }
+    .k-text a { color: var(--green); }
+    .k-text a:hover { text-decoration: underline; }
+    .kontakt-form { display: flex; flex-direction: column; gap: 12px; }
+    .kontakt-form label {
+      font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--muted); display: block; margin-bottom: 4px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+    .kontakt-form input, .kontakt-form textarea {
+      width: 100%; padding: 10px 13px; border: 1.5px solid var(--border);
+      border-radius: var(--radius); font-size: 1rem; color: var(--ink);
+      background: var(--white); transition: border-color 0.2s; outline: none;
+      font-family: inherit;
+    }
+    .kontakt-form input:focus, .kontakt-form textarea:focus { border-color: var(--green); }
+    .kontakt-form textarea { resize: vertical; min-height: 110px; }
+    .kontakt-form .btn-send {
+      background: var(--green); color: var(--white); border: none;
+      padding: 12px 28px; border-radius: 999px; font-family: inherit;
+      font-weight: 700; font-size: 0.92rem; cursor: pointer; align-self: flex-start;
+      transition: background 0.2s, transform 0.15s;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+    .kontakt-form .btn-send:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+    /* ── HILSEN / FACEBOOK CTA ── */
+    .fb-section {
+      background: var(--green-dark); padding: 56px 24px; text-align: center;
+      background-image:
+        radial-gradient(circle at 30% 20%, rgba(200,144,60,0.08) 0, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(240,213,160,0.05) 0, transparent 50%);
+    }
+    .fb-section .handwritten { color: var(--ochre-light); font-size: 1.5rem; }
+    .fb-section h3 {
+      font-family: Georgia, serif; font-size: 1.5rem; color: var(--white);
+      margin: 4px 0 10px; font-weight: 700;
+    }
+    .fb-section p {
+      color: rgba(255,255,255,0.78); margin: 0 auto 20px; max-width: 480px;
+      font-size: 0.98rem; line-height: 1.6;
+    }
+    .fb-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--ochre); color: var(--green-dark); font-weight: 700;
+      padding: 12px 26px; border-radius: 999px; font-size: 0.92rem; transition: all 0.2s;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+    .fb-btn:hover { background: var(--ochre-light); transform: translateY(-1px); }
+
+    /* ── GAARD BRAND ── */
+    .gaard-brand {
+      padding: 56px 0 48px; text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .gaard-brand img { width: 84px; margin: 0 auto 14px; }
+    .gaard-brand .handwritten { color: var(--ochre); font-size: 1.3rem; margin-bottom: 2px; }
+    .gaard-brand h2 {
+      font-family: Georgia, serif; font-size: 1.35rem; color: var(--green);
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; font-weight: 700;
+    }
+    .gaard-brand p { font-size: 0.9rem; color: var(--muted); }
+
+    /* ── INSTAGRAM FEED ── */
+    .insta-section {
+      background: var(--white);
+      padding: 64px 0 0;
+      border-top: 1px solid var(--border);
+    }
+    .insta-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap; margin-bottom: 28px;
+    }
+    .insta-brand { display: flex; align-items: center; gap: 14px; }
+    .insta-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .insta-icon svg { color: white; }
+    .insta-brand-text h3 {
+      font-family: Georgia, serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 1px;
+    }
+    .insta-brand-text p { font-size: 0.85rem; color: var(--muted); }
+    .insta-follow-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: linear-gradient(135deg, #f09433, #dc2743, #bc1888);
+      color: white; padding: 9px 20px; border-radius: 999px;
+      font-size: 0.88rem; font-weight: 700; transition: opacity 0.2s; flex-shrink: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+    .insta-follow-btn:hover { opacity: 0.88; }
+
+    /* Behold.so widget container */
+    .insta-feed-wrap {
+      min-height: 280px;
+    }
+
+    /* Fallback grid — vises til Behold er koblet til */
+    .insta-fallback {
+      display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px;
+    }
+    .insta-fallback-item {
+      aspect-ratio: 1; overflow: hidden; position: relative; cursor: pointer;
+    }
+    .insta-fallback-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .insta-fallback-item:hover img { transform: scale(1.07); }
+    .insta-fallback-item .overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,0);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .insta-fallback-item:hover .overlay { background: rgba(0,0,0,0.25); }
+    .insta-fallback-item .overlay svg { opacity: 0; transition: opacity 0.2s; color: white; }
+    .insta-fallback-item:hover .overlay svg { opacity: 1; }
+    .insta-cta-bar {
+      text-align: center; padding: 22px;
+      border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--muted);
+    }
+    .insta-cta-bar a { color: #bc1888; font-weight: 600; }
+    .insta-cta-bar a:hover { text-decoration: underline; }
+    @media (max-width: 720px) {
+      .insta-fallback { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green-dark); color: rgba(255,255,255,0.65);
+      padding: 36px 24px; text-align: center; font-size: 0.85rem;
+    }
+    footer strong { color: rgba(255,255,255,0.9); }
+    .footer-nav {
+      background: transparent; border: none; position: static;
+      display: flex; justify-content: center; gap: 18px;
+      margin: 12px 0 16px; flex-wrap: wrap;
+    }
+    .footer-nav a { color: rgba(255,255,255,0.7); transition: color 0.2s; font-size: 0.85rem; }
+    .footer-nav a:hover { color: var(--ochre-light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      body { font-size: 15px; } /* Juster basefont for mobil */
+      .prod-row { grid-template-columns: 1fr; }
+      .prod-img img { height: 200px; }
+      .produkt-showcase { grid-template-columns: 1fr; }
+      .leiepresse-grid { grid-template-columns: 1fr; }
+      .besok-grid { grid-template-columns: 1fr; gap: 32px; }
+      .aapningstider { order: 2; } /* Kart først på mobil */
+      .kart-wrap { order: 1; }
+      .kontakt-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .topbar-inner { justify-content: center; }
+      .btn-outline { margin-left: 0; margin-top: 10px; display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="wrap-wide topbar-inner">
+      <span>
+        &#x1F4E7; <a href="mailto:kontakt@vestreborge.no">kontakt@vestreborge.no</a>
+        &nbsp;&middot;&nbsp;
+        &#x260E;&#xFE0F; <a href="tel:+4790202169">902 02 169</a>
+        &nbsp;&middot;&nbsp;
+        &#x1F4CD; Borgestad, Grenland
+      </span>
+      <div class="topbar-social">
+        <a href="https://facebook.com/vestreborge" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="wrap-wide nav-inner">
+      <a href="#toppen" class="nav-brand">
+        <img src="media/Logo.png" alt="Vestre Borge G&aring;rd" />
+        <div class="nav-brand-text">
+          Vestre Borge G&aring;rd
+          <small>G&aring;rdspresseri &middot; Grenland</small>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#gaarden">G&aring;rden</a></li>
+        <li><a href="#produksjon">Produksjon</a></li>
+        <li><a href="#leiepresse">Leiepresse</a></li>
+        <li><a href="#besok">Bes&oslash;k</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="toppen">
+    <img src="media/banner.jpg" alt="Vestre Borge G&aring;rd" class="hero-bg" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img src="media/Logo.png" alt="Vestre Borge G&aring;rd logo" class="hero-logo" />
+      <h1>Vestre Borge G&aring;rd<em>&sim; øko eplemost fra egen hage &sim;</em></h1>
+      <p class="hero-sub">
+        Presset i eget g&aring;rdspresseri p&aring; Borgestad i Grenland.
+        Ekte smak &mdash; uten tilsetningsstoffer, rett fra treet til glasset.
+      </p>
+      <a href="#produksjon" class="btn btn-green">Se produktene</a>
+      <a href="#leiepresse" class="btn btn-outline">Leiepresse</a>
+    </div>
+  </section>
+
+  <!-- VELKOMMEN -->
+  <section class="velkommen" id="velkommen">
+    <div class="wrap">
+      <span class="handwritten">&mdash; hei og velkommen &mdash;</span>
+      <h2>Velkommen til g&aring;rden</h2>
+      <p>
+        Her kan du lese litt om g&aring;rden, hva vi gj&oslash;r og hvordan du finner oss.
+        Vi er stolte av v&aring;r &oslash;kologiske produksjon og h&aring;per du vil sette pris p&aring; smaken av ekte,
+        kortreist eplemost.
+      </p>
+      <p>
+        Har du sp&oslash;rsm&aring;l, ta gjerne kontakt p&aring;
+        <a href="mailto:kontakt@vestreborge.no" style="color:var(--green);font-weight:600;">kontakt@vestreborge.no</a>
+      </p>
+      <div class="social-row">
+        <a href="https://facebook.com/vestreborge" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          F&oslash;lg oss p&aring; Facebook
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GÅRDEN -->
+  <section class="section" id="gaarden">
+    <div class="wrap">
+      <div class="section-title-wrap">
+        <span class="handwritten">&mdash; familiedrift siden 1928 &mdash;</span>
+        <h2 class="section-heading">G&aring;rden V&aring;r</h2>
+      </div>
+      <p class="gaarden-lead">Vestre Borge G&aring;rd er lokalisert p&aring; Borgestad i Grenland.</p>
+      <p class="gaarden-text">
+        Hans Kleppen overtok g&aring;rden i 1928 og har v&aelig;rt i v&aring;r familie siden den gang.
+        I dag er det Signe Kleppen og hennes to s&oslash;nner som drifter g&aring;rden.
+      </p>
+      <br />
+      <p class="gaarden-text">
+        Fra 1993 hadde vi samarbeid med et hestesenter, men senteret flyttet ut i 2017.
+        Da den gamle frukthagen sto for fall og ble fjernet i 2014, bestemte vi oss for nyplanting av epletr&aelig;r.
+        For &aring; skape en ny driftsform inngikk vi et samarbeid med Innovasjon Norge med satsning p&aring; &oslash;kologisk epleproduksjon.
+      </p>
+      <br />
+      <p class="gaarden-text">
+        I dag har vi en 10-m&aring;l stor hage bestående av ca. 2 500 epletr&aelig;r og 100 plommetr&aelig;r.
+        I tillegg har vi bygget v&aring;rt eget produksjonsrom der vi presser og tapper eplemosten
+        &mdash; mer kortreist blir det ikke!
+      </p>
+    </div>
+  </section>
+
+  <!-- PRODUKSJON -->
+  <section class="section section-alt" id="produksjon">
+    <div class="wrap">
+      <div class="section-title-wrap">
+        <span class="handwritten">&mdash; økologisk & kortreist &mdash;</span>
+        <h2 class="section-heading">Fra Hage til Flaske</h2>
+        <p class="section-sub">
+          P&aring; Vestre Borge G&aring;rd jobber vi med økologisk epleproduksjon og eplemost.
+        </p>
+      </div>
+
+      <!-- Eplesorter -->
+      <div class="prod-row">
+        <div class="prod-img">
+          <img src="media/epler.jpg" alt="&Oslash;kologiske epler fra Vestre Borge G&aring;rd" />
+        </div>
+        <div class="sorter">
+          <h3>V&aring;re &Oslash;kologiske Epler</h3>
+          <div class="sort-item">
+            <strong>Discovery</strong>
+            <p>Fruktkj&oslash;ttet er hvitt, fast og saftig med s&oslash;t god smak og fin aroma.
+            Eplet har god kvalitet og er best i september og oktober.</p>
+          </div>
+          <div class="sort-item">
+            <strong>R&oslash;d Aroma</strong>
+            <p>Fruktkj&oslash;ttet er gulhvitt, middels fast og saftig med god balanse mellom sukker og syre.
+            Dette gir en mild, fin aroma. R&oslash;d Aroma er et spesielt godt spiseeple.
+            H&oslash;stetid er fra slutten av september til begynnelsen av oktober, modningstiden er
+            november&ndash;desember. Aroma epler kan lagres ved lavere temperatur enn mange andre sorter (2&thinsp;&deg;C)
+            og holder da betydelig lenger.</p>
+          </div>
+          <div class="sort-item">
+            <strong>Santana</strong>
+            <p>Eplet har spr&oslash;tt fruktkj&oslash;tt, er saftig og har en frisk syrlig smak med mye s&oslash;tlig aroma.
+            Du kan h&oslash;ste de litt f&oslash;r de er modne om du vil ha dem liggende til jul,
+            ellers er det siste halvdel i oktober som gjelder for friskkonsum.</p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <!-- Eplemost -->
+      <h3 style="font-family:Georgia,serif;font-size:1.3rem;color:var(--green);margin-bottom:16px;">V&aring;r Eplemost</h3>
+      <p class="most-text">
+        P&aring; g&aring;rdspresseriet v&aring;rt presser og tapper vi eplemost av eplene fra hagen.
+        Vi er selektive og n&oslash;ye i sorteringen, og passer p&aring; &aring; h&oslash;ste eplene i riktig tid slik at vi f&aring;r
+        den smaken vi &oslash;nsker. Vi varmebehandler r&aring;saften skj&aring;nsomt slik at den beholder
+        den gode friske smaken og f&aring;r lang holdbarhet.
+        Eplemostene er sv&aelig;rt friske i smaken og har god balanse mellom s&oslash;dme og syrlighet.
+        Disse kan kj&oslash;pes direkte fra oss &mdash; ta kontakt eller f&oslash;lg med p&aring; Facebook for &aring;pningstider.
+      </p>
+
+      <div class="produkt-showcase">
+        <!-- Flaske -->
+        <div class="produkt-card">
+          <div class="produkt-card-img">
+            <img src="media/flaske_eks.jpg" alt="&Oslash;ko Eplemost 0,7 liter flaske" />
+          </div>
+          <div class="produkt-card-body">
+            <span class="badge">&Oslash;kologisk &middot; Discovery</span>
+            <h3>Eplemost 0,7L Flaske</h3>
+            <p>
+              V&aring;r klassiske eplemost p&aring; flaske. Naturlig presset, ufiltrert og uten tilsetningsstoffer.
+              Frisk, fyldig smak &mdash; perfekt til hverdagsm&aring;ltidet eller som gave.
+            </p>
+            <div class="pris">Pris ved bestilling &mdash; ta kontakt</div>
+          </div>
+        </div>
+
+        <!-- Kartong / bag-in-box -->
+        <div class="produkt-card">
+          <div class="produkt-card-img">
+            <img src="media/kartong_eks.jpg" alt="&Oslash;ko Eplemost Aroma 3 liter bag-in-box" />
+          </div>
+          <div class="produkt-card-body">
+            <span class="badge">&Oslash;kologisk &middot; Aroma</span>
+            <h3>Eplemost 3L Bag-in-Box</h3>
+            <p>
+              Praktisk bag-in-box p&aring; 3 liter &mdash; holder eplemostens friskhet lenge etter &aring;pning.
+              Populær til familie og arrangementer.
+            </p>
+            <div class="pris">Pris ved bestilling &mdash; ta kontakt</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LEIEPRESSE -->
+  <section class="section" id="leiepresse">
+    <div class="wrap">
+      <div class="section-title-wrap">
+        <span class="handwritten">&mdash; ta med egne epler &mdash;</span>
+        <h2 class="section-heading">Leiepresse</h2>
+        <p class="section-sub">
+          Lever hageeplene til presseriet p&aring; Vestre Borge G&aring;rd p&aring; Borgestad!
+          V&aring;rt profesjonelle presseri er godkjent av Mattilsynet og har h&oslash;y kapasitet og utbytte.
+        </p>
+      </div>
+
+      <div class="leiepresse-grid">
+        <div>
+          <div class="lp-block">
+            <h3>Innlevering</h3>
+            <p><strong>Innlevering er mulig fra 1. september til ca. 15. oktober.</strong></p>
+            <p style="margin-top:8px;">
+              Eplemottaket er &aring;pent <strong>hver dag (unntatt torsdag)</strong> i denne perioden fra <strong>kl. 12&ndash;18</strong>.
+              Ta gjerne kontakt om det er sp&oslash;rsm&aring;l eller &oslash;nske om &aring; levere utenom disse tidene.
+            </p>
+          </div>
+
+          <div class="lp-block" style="margin-top:28px;">
+            <h3>Slik fungerer det</h3>
+            <p>
+              Ved innlevering veies eplene og presses deretter sammen med andre innleverte hagepler.
+              Eplemosten pasteuriseres og tappes ufiltrert &mdash; helt uten tilsetninger.
+            </p>
+            <p style="margin-top:10px;">
+              Tilbake f&aring;r dere <strong>100% ren eplemost p&aring; 3-liters kartong (bag-in-box)</strong>
+              som er holdbar inntil ett &aring;r.
+            </p>
+            <p style="margin-top:10px;">
+              <strong>Innlevering av 5&ndash;6 kg epler</strong> tilsvarer ca. <strong>3 liter eplemost</strong>,
+              alt etter eplesort, st&oslash;rrelse og modningsgrad.
+            </p>
+          </div>
+
+          <div class="lp-highlight">
+            <h4>Pris &amp; etikett</h4>
+            <p>Prisen ved utlevering er fra <strong>100 til 120 kr pr. kartong (3 L)</strong>.</p>
+            <p style="margin-top:6px;">Valgfri etikett f&aring;r dere med i prisen!</p>
+            <p style="margin-top:10px;">
+              Kontakt: <a href="mailto:kontakt@vestreborge.no">kontakt@vestreborge.no</a>
+              &nbsp;&middot;&nbsp; <a href="tel:+4790202169">902 02 169</a>
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="lp-block">
+            <h3>Hva kan leveres?</h3>
+            <p>Vi tar imot de fleste hageeplesorter. Som tommelfingerregel: <em>Kan eplet spises, s&aring; kan det presses!</em></p>
+            <ul style="margin-top:12px;">
+              <li>Sm&aring;skader, insektbitt og skruv gj&oslash;r ingenting</li>
+              <li>Vi er selektive &mdash; vi sorterer for best mulig resultat</li>
+            </ul>
+          </div>
+
+          <div class="lp-note" style="margin-top:20px;">
+            <p><strong>Ikke lever:</strong></p>
+            <ul style="padding-left:16px;margin-top:6px;">
+              <li style="font-size:0.88rem;color:#5a4800;line-height:1.7;">Epler som er &laquo;melne&raquo; (m&oslash;r, degaktig konsistens)</li>
+              <li style="font-size:0.88rem;color:#5a4800;line-height:1.7;">Epler med r&aring;te</li>
+              <li style="font-size:0.88rem;color:#5a4800;line-height:1.7;">Epler fulle av jord</li>
+              <li style="font-size:0.88rem;color:#5a4800;line-height:1.7;">&laquo;Glass / Transparent / Sommerepler&raquo; &mdash; ikke egnet til eplemost</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BESØK GÅRDEN -->
+  <section class="section section-alt" id="besok">
+    <div class="wrap">
+      <div class="section-title-wrap">
+        <span class="handwritten">&mdash; stikk gjerne innom &mdash;</span>
+        <h2 class="section-heading">Bes&oslash;k g&aring;rden</h2>
+        <p class="section-sub">
+          G&aring;rdsutsalget er &aring;pent fra september og frem til jul.
+          Ta kontakt for bes&oslash;k utenom &aring;pningstidene.
+        </p>
+      </div>
+
+      <div class="besok-grid">
+        <div>
+          <div class="aapningstider">
+            <h3>&Aring;pningstider &mdash; G&aring;rdsutsalg</h3>
+            <div class="tid-row"><span class="dag">Onsdag</span><span class="kl">kl. 15:00 &ndash; 17:00</span></div>
+            <div class="tid-row"><span class="dag">L&oslash;rdag</span><span class="kl">kl. 12:00 &ndash; 16:00</span></div>
+            <div class="tid-row"><span class="dag">S&oslash;ndag</span><span class="kl">kl. 12:00 &ndash; 16:00</span></div>
+            <p style="font-size:0.82rem;color:var(--muted);margin-top:14px;">
+              September &ndash; frem til jul.
+              Ta kontakt for bes&oslash;k utenom disse tidene.
+            </p>
+          </div>
+
+          <div class="adresse-box">
+            <h3>Adresse &amp; veibeskrivelse</h3>
+            <p>
+              <strong>Enggravvegen 53, 3712 Skien</strong><br />
+              <em>(Innkj&oslash;rsel ved Borgevegen)</em>
+            </p>
+            <p>
+              Ved bruk av GPS: skriv inn &laquo;Borgevegen 10&raquo; eller
+              &laquo;Vestre Borge G&aring;rd i Grenland&raquo;.
+            </p>
+            <p>
+              <a href="https://goo.gl/maps/uQuwwajsaEBAUpWc9" target="_blank" rel="noopener">
+                &#x1F5FA;&#xFE0F; &Aring;pne i Google Kart
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div class="kart-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2044.9860879763418!2d9.654491016161856!3d59.16608753114244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46721b7b698364f%3A0x1dc65ea4d01100f6!2sVestre%20Borge%20G%C3%A5rd%20I%20Grenland!5e0!3m2!1sno!2sno!4v1631387233432!5m2!1sno!2sno"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Kart til Vestre Borge G&aring;rd">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="section" id="kontakt">
+    <div class="wrap">
+      <div class="section-title-wrap">
+        <span class="handwritten">&mdash; vi hører gjerne fra deg &mdash;</span>
+        <h2 class="section-heading">Kontakt oss</h2>
+        <p class="section-sub">Si hei &mdash; vi svarer så fort vi kan.</p>
+      </div>
+      <div class="kontakt-grid">
+        <div class="kontakt-info">
+          <h3>Finn oss</h3>
+          <div class="kontakt-row">
+            <div class="k-icon">&#x1F4E7;</div>
+            <div class="k-text">
+              <strong>E-post</strong>
+              <span><a href="mailto:kontakt@vestreborge.no">kontakt@vestreborge.no</a></span>
+            </div>
+          </div>
+          <div class="kontakt-row">
+            <div class="k-icon">&#x260E;</div>
+            <div class="k-text">
+              <strong>Telefon</strong>
+              <span><a href="tel:+4790202169">902 02 169</a></span>
+            </div>
+          </div>
+          <div class="kontakt-row">
+            <div class="k-icon">&#x1F4CD;</div>
+            <div class="k-text">
+              <strong>Adresse</strong>
+              <span>Enggravvegen 53, 3712 Skien<br /><em style="font-size:0.85rem;">(Innkj&oslash;rsel ved Borgevegen)</em></span>
+            </div>
+          </div>
+          <div class="kontakt-row">
+            <div class="k-icon">&#x1F4BB;</div>
+            <div class="k-text">
+              <strong>Facebook</strong>
+              <span><a href="https://facebook.com/vestreborge" target="_blank" rel="noopener">facebook.com/vestreborge</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-family:Georgia,serif;font-size:1.1rem;color:var(--green);padding-bottom:7px;border-bottom:2px solid var(--ochre);margin-bottom:16px;">Send en melding</h3>
+          <form class="kontakt-form" onsubmit="sendForm(event)">
+            <div>
+              <label for="navn">Navn</label>
+              <input type="text" id="navn" name="navn" placeholder="Ditt navn" required />
+            </div>
+            <div>
+              <label for="epost">E-post</label>
+              <input type="email" id="epost" name="epost" placeholder="din@epost.no" required />
+            </div>
+            <div>
+              <label for="melding">Melding</label>
+              <textarea id="melding" name="melding" placeholder="Hva lurer du p&aring;?" required></textarea>
+            </div>
+            <button type="submit" class="btn-send">Send melding</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACEBOOK -->
+  <div class="fb-section">
+    <div class="wrap">
+      <span class="handwritten">&mdash; hold deg oppdatert &mdash;</span>
+      <h3>Se hva som skjer p&aring; g&aring;rden</h3>
+      <p>F&oslash;lg oss p&aring; Facebook for sesong, nyheter og &aring;pningstider p&aring; g&aring;rdsutsalget.</p>
+      <a href="https://facebook.com/vestreborge" target="_blank" rel="noopener" class="fb-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Vestre Borge G&aring;rd p&aring; Facebook
+      </a>
+    </div>
+  </div>
+
+  <!-- GAARD BRAND -->
+  <div class="gaard-brand">
+    <img src="media/Logo.png" alt="Vestre Borge G&aring;rd" />
+    <span class="handwritten">Fra hjertet av Grenland</span>
+    <h2>Vestre Borge G&aring;rd</h2>
+    <p>G&aring;rdspresseri &middot; Borgestad, Grenland</p>
+  </div>
+
+  <!-- INSTAGRAM FEED
+       ─────────────────────────────────────────────────────────
+       Slik kobler du til ekte Instagram-bilder (gratis):
+       1. Gå til https://behold.so og logg inn med Instagram-kontoen @vestreborge
+       2. Opprett et nytt widget, velg «Grid» og tilpass utseendet
+       3. Kopier widget-ID-en (f.eks. «abc12345»)
+       4. Erstatt «BEHOLD_WIDGET_ID» nedenfor med din ID
+       5. Fjern <div class="insta-fallback"> blokken under
+       ───────────────────────────────────────────────────────── -->
+  <section class="insta-section">
+    <div class="wrap-wide" style="padding-bottom:0;">
+
+      <!-- Header -->
+      <div class="insta-header">
+        <div class="insta-brand">
+          <div class="insta-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </div>
+          <div class="insta-brand-text">
+            <h3>@vestreborge</h3>
+            <p>Vestre Borge G&aring;rd p&aring; Instagram</p>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener" class="insta-follow-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          F&oslash;lg oss
+        </a>
+      </div>
+
+      <!-- Behold.so widget (aktiv n&aring;r widget-ID er satt) -->
+      <div class="insta-feed-wrap">
+
+        <!-- BYTT UT: Erstatt BEHOLD_WIDGET_ID med din ID fra behold.so -->
+        <!-- <div id="behold-widget-BEHOLD_WIDGET_ID"></div> -->
+        <!-- <script async src="//behold.so/widget.js?v=5"></script> -->
+
+        <!-- FALLBACK: Fjern denne blokken n&aring;r Behold er koblet til -->
+        <div class="insta-fallback">
+          <a class="insta-fallback-item" href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener">
+            <img src="media/banner.jpg" alt="Eplemost" />
+            <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
+          </a>
+          <a class="insta-fallback-item" href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener">
+            <img src="media/epler.jpg" alt="&Oslash;kologiske epler" />
+            <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
+          </a>
+          <a class="insta-fallback-item" href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener">
+            <img src="media/flaske_eks.jpg" alt="Eplemost flaske" />
+            <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
+          </a>
+          <a class="insta-fallback-item" href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener">
+            <img src="media/kartong_eks.jpg" alt="Bag-in-box" />
+            <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
+          </a>
+          <a class="insta-fallback-item" href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener" style="background:#1a3a0a;">
+            <img src="media/banner.jpg" alt="" style="filter:hue-rotate(40deg) saturate(0.6) brightness(0.6);" />
+            <div class="overlay" style="background:rgba(26,58,10,0.55);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
+          </a>
+          <a class="insta-fallback-item" href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener" style="background:#2d5a1b;">
+            <img src="media/epler.jpg" alt="" style="filter:saturate(1.3) brightness(0.65);" />
+            <div class="overlay" style="background:rgba(45,90,27,0.45);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
+          </a>
+        </div>
+        <!-- /FALLBACK -->
+
+      </div>
+    </div>
+
+    <div class="insta-cta-bar">
+      Se alle bilder p&aring;
+      <a href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener">@vestreborge p&aring; Instagram</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>Vestre Borge G&aring;rd</strong> &middot; G&aring;rdspresseri i Grenland
+    <nav class="footer-nav">
+      <a href="#gaarden">G&aring;rden</a>
+      <a href="#produksjon">Produksjon</a>
+      <a href="#leiepresse">Leiepresse</a>
+      <a href="#besok">Bes&oslash;k</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="etikett/">Etikett-generator</a>
+    </nav>
+    <p>
+      &copy; <span id="copy-year">2025</span> Vestre Borge G&aring;rd &middot;
+      <a href="mailto:kontakt@vestreborge.no" style="color:rgba(255,255,255,0.55);">kontakt@vestreborge.no</a>
+      &middot; <a href="tel:+4790202169" style="color:rgba(255,255,255,0.55);">902 02 169</a>
+    </p>
+  </footer>
+
+  <script>
+    // Auto-oppdater årstall
+    document.getElementById('copy-year').textContent = new Date().getFullYear();
+
+    function sendForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-send');
+      btn.textContent = 'Melding sendt \u2713';
+      btn.style.background = '#388E3C';
+      btn.disabled = true;
+      e.target.reset();
+    }
+  </script>
+
+</body>
+</html>
