@@ -4,7 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vestre Borge G&aring;rd i Grenland &ndash; &Oslash;kologisk eplemost fra eget g&aring;rdspresseri</title>
-  <meta name="description" content="Vestre Borge G&aring;rd p&aring; Borgestad i Grenland. &Oslash;kologisk eplemost, leiepresse og gårdsutsalg. Kontakt: kontakt@vestreborge.no" />
+  <meta name="description" content="Vestre Borge G&aring;rd p&aring; Borgestad i Grenland. &Oslash;kologisk eplemost, leiepresse og g&aring;rdsutsalg. Sorter: Discovery, Aroma og Summerred. Kontakt: kontakt@vestreborge.no" />
+  <meta name="keywords" content="eplemost, &oslash;kologisk eplemost, Grenland, Borgestad, Skien, Telemark, leiepresse, g&aring;rdsutsalg, Discovery, Aroma, Summerred, bag-in-box, epler" />
+  <meta name="author" content="Vestre Borge G&aring;rd" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#3a6b25" />
+  <link rel="canonical" href="https://vestreborge.no/" />
+  <link rel="icon" type="image/png" href="media/Logo.png" />
+  <link rel="apple-touch-icon" href="media/Logo.png" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vestre Borge G&aring;rd" />
+  <meta property="og:locale" content="nb_NO" />
+  <meta property="og:url" content="https://vestreborge.no/" />
+  <meta property="og:title" content="Vestre Borge G&aring;rd &ndash; &Oslash;kologisk eplemost fra Grenland" />
+  <meta property="og:description" content="Gammel &oslash;kologisk g&aring;rd p&aring; Borgestad. Vi presser eplemost av egne epler &mdash; Discovery, Aroma og Summerred. Leiepresse og g&aring;rdsutsalg." />
+  <meta property="og:image" content="https://vestreborge.no/media/banner.jpg" />
+  <meta property="og:image:alt" content="Vestre Borge G&aring;rd med epletr&aelig;r" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Vestre Borge G&aring;rd &ndash; &Oslash;kologisk eplemost fra Grenland" />
+  <meta name="twitter:description" content="&Oslash;kologisk eplemost fra egne epler p&aring; Borgestad. Leiepresse og g&aring;rdsutsalg." />
+  <meta name="twitter:image" content="https://vestreborge.no/media/banner.jpg" />
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Structured data: LocalBusiness / Farm -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "Farm"],
+    "name": "Vestre Borge Gård",
+    "description": "Økologisk gård på Borgestad i Grenland med egen eplepresse. Vi produserer økologisk eplemost av sortene Discovery, Aroma og Summerred, og tilbyr leiepresse og gårdsutsalg.",
+    "url": "https://vestreborge.no/",
+    "logo": "https://vestreborge.no/media/Logo.png",
+    "image": "https://vestreborge.no/media/banner.jpg",
+    "email": "kontakt@vestreborge.no",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Borgestad",
+      "addressRegion": "Telemark",
+      "addressCountry": "NO"
+    },
+    "areaServed": "Grenland",
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Økologisk eplemost 0,7L flaske",
+          "category": "Eplemost"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Økologisk eplemost 3L bag-in-box",
+          "category": "Eplemost"
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "Leiepresse",
+        "description": "Ta med egne epler og press din egen most på gården."
+      }
+    ]
+  }
+  </script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
     :root {
@@ -250,6 +322,11 @@
       margin-bottom: 8px; line-height: 1.3; text-align: left; /* Endret */
     }
     .produkt-card-body p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
+    .produkt-card-body p.sorter {
+      font-size: 0.88rem; color: var(--green-dark);
+      background: var(--cream); padding: 8px 12px; border-radius: 6px;
+      border-left: 3px solid var(--ochre); margin-bottom: 14px;
+    }
     .produkt-card-body .pris { font-size: 0.92rem; font-weight: 700; color: var(--green); }
 
     /* ── LEIEPRESSE ── */
@@ -611,7 +688,7 @@
       <!-- Eplesorter -->
       <div class="prod-row">
         <div class="prod-img">
-          <img src="media/epler.jpg" alt="&Oslash;kologiske epler fra Vestre Borge G&aring;rd" />
+          <img src="media/epler.jpg" alt="&Oslash;kologiske epler fra Vestre Borge G&aring;rd" loading="lazy" />
         </div>
         <div class="sorter">
           <h3>V&aring;re &Oslash;kologiske Epler</h3>
@@ -654,15 +731,16 @@
         <!-- Flaske -->
         <div class="produkt-card">
           <div class="produkt-card-img">
-            <img src="media/flaske_eks.jpg" alt="&Oslash;ko Eplemost 0,7 liter flaske" />
+            <img src="media/flaske_eks.jpg" alt="&Oslash;kologisk eplemost p&aring; 0,7 liter flaske fra Vestre Borge G&aring;rd" loading="lazy" />
           </div>
           <div class="produkt-card-body">
-            <span class="badge">&Oslash;kologisk &middot; Discovery</span>
+            <span class="badge">&Oslash;kologisk</span>
             <h3>Eplemost 0,7L Flaske</h3>
             <p>
               V&aring;r klassiske eplemost p&aring; flaske. Naturlig presset, ufiltrert og uten tilsetningsstoffer.
               Frisk, fyldig smak &mdash; perfekt til hverdagsm&aring;ltidet eller som gave.
             </p>
+            <p class="sorter"><em>Tilgjengelig i alle v&aring;re tre sorter: Discovery, Aroma og Summerred.</em></p>
             <div class="pris">Pris ved bestilling &mdash; ta kontakt</div>
           </div>
         </div>
@@ -670,15 +748,16 @@
         <!-- Kartong / bag-in-box -->
         <div class="produkt-card">
           <div class="produkt-card-img">
-            <img src="media/kartong_eks.jpg" alt="&Oslash;ko Eplemost Aroma 3 liter bag-in-box" />
+            <img src="media/kartong_eks.jpg" alt="&Oslash;kologisk eplemost i 3 liter bag-in-box fra Vestre Borge G&aring;rd" loading="lazy" />
           </div>
           <div class="produkt-card-body">
-            <span class="badge">&Oslash;kologisk &middot; Aroma</span>
+            <span class="badge">&Oslash;kologisk</span>
             <h3>Eplemost 3L Bag-in-Box</h3>
             <p>
               Praktisk bag-in-box p&aring; 3 liter &mdash; holder eplemostens friskhet lenge etter &aring;pning.
-              Populær til familie og arrangementer.
+              Popul&aelig;r til familie og arrangementer.
             </p>
+            <p class="sorter"><em>Tilgjengelig i alle v&aring;re tre sorter: Discovery, Aroma og Summerred.</em></p>
             <div class="pris">Pris ved bestilling &mdash; ta kontakt</div>
           </div>
         </div>
@@ -943,27 +1022,27 @@
         <!-- FALLBACK: Fjern denne blokken n&aring;r Behold er koblet til -->
         <div class="insta-fallback">
           <a class="insta-fallback-item" href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener">
-            <img src="media/banner.jpg" alt="Eplemost" />
+            <img src="media/banner.jpg" alt="Eplemost" loading="lazy" />
             <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
           </a>
           <a class="insta-fallback-item" href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener">
-            <img src="media/epler.jpg" alt="&Oslash;kologiske epler" />
+            <img src="media/epler.jpg" alt="&Oslash;kologiske epler" loading="lazy" />
             <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
           </a>
           <a class="insta-fallback-item" href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener">
-            <img src="media/flaske_eks.jpg" alt="Eplemost flaske" />
+            <img src="media/flaske_eks.jpg" alt="Eplemost flaske" loading="lazy" />
             <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
           </a>
           <a class="insta-fallback-item" href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener">
-            <img src="media/kartong_eks.jpg" alt="Bag-in-box" />
+            <img src="media/kartong_eks.jpg" alt="Bag-in-box" loading="lazy" />
             <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
           </a>
           <a class="insta-fallback-item" href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener" style="background:#1a3a0a;">
-            <img src="media/banner.jpg" alt="" style="filter:hue-rotate(40deg) saturate(0.6) brightness(0.6);" />
+            <img src="media/banner.jpg" alt="" loading="lazy" style="filter:hue-rotate(40deg) saturate(0.6) brightness(0.6);" />
             <div class="overlay" style="background:rgba(26,58,10,0.55);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
           </a>
           <a class="insta-fallback-item" href="https://www.instagram.com/vestreborge/" target="_blank" rel="noopener" style="background:#2d5a1b;">
-            <img src="media/epler.jpg" alt="" style="filter:saturate(1.3) brightness(0.65);" />
+            <img src="media/epler.jpg" alt="" loading="lazy" style="filter:saturate(1.3) brightness(0.65);" />
             <div class="overlay" style="background:rgba(45,90,27,0.45);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
           </a>
         </div>
