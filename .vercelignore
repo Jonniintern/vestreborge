@@ -1,0 +1,8 @@
+# Vercel deployer bare hovedsiden (index.html + media/)
+# etikett/ er en Node.js-app som må deployes separat (Railway/Render)
+etikett/
+uploads/
+*.py
+_write*.py
+_fullpage.*
+README.md

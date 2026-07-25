@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+etikett/node_modules/
+
+# Miljø / hemmeligheter
+.env
+.env.local
+.env.*.local
+etikett/.env
+
+# Data / uploads (etikett-app)
+etikett/uploads/*
+!etikett/uploads/.gitkeep
+etikett/*.db
+etikett/*.db-journal
+
+# Build / logger
+dist/
+build/
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Vercel
+.vercel
+
+# Midlertidige script
+_write*.py
+_fullpage.*
